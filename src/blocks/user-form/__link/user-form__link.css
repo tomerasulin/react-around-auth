@@ -1,0 +1,8 @@
+.user-form__link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.user-form__link:hover {
+  opacity: 0.6;
+}

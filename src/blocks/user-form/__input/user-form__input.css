@@ -1,0 +1,31 @@
+.user-form__input {
+  width: 358px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  margin: 0;
+  border: none;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.21;
+  color: #cccccc;
+  padding: 0;
+  border-bottom: 2px solid #cccccc;
+  background-color: inherit;
+}
+
+.user-form__input:first-of-type {
+  margin-top: 50px;
+  padding-bottom: 13px;
+}
+
+.user-form__input:last-of-type {
+  margin-top: 30px;
+  padding-bottom: 13px;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:focus {
+  transition: background-color 600000s 0s, color 600000s 0s;
+}

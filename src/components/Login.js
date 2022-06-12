@@ -1,10 +1,10 @@
 // This component is for user authorization
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import FormValidation from './FormValidation';
+import useFormAndValidation from '../hooks/useFormAndValidation';
 
 const Login = ({ onLogin, loggedIn, buttonText }) => {
-  const { values, errors, handleChange, resetForm } = FormValidation();
+  const { values, errors, handleChange, resetForm } = useFormAndValidation();
 
   const handleSubmit = (e) => {
     e.preventDefault();

@@ -1,9 +1,9 @@
 import PopupWithForm from "./PopupWithForm";
 import React from "react";
-import FormValidation from "./FormValidation";
+import useFormAndValidation from "../hooks/useFormAndValidation";
 
 const AddPlacePopup = ({ isOpen, onClose, onAddPlace, buttonText }) => {
-  const { isValid, values, errors, handleChange, resetForm } = FormValidation();
+  const { isValid, values, errors, handleChange, resetForm } = useFormAndValidation();
 
   function handleSubmit(e) {
     e.preventDefault();

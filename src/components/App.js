@@ -13,7 +13,7 @@ import PopupWithConfirmation from './PopupWithConfirmation';
 import Login from './Login';
 import Register from './Register';
 import ProtectedRoute from './ProtectedRoute';
-import { register, authorize, validate } from '../utils/auth';
+import { register, authorize, checkToken } from '../utils/auth';
 import InfoTooltip from './InfoTooltip';
 
 function App() {
@@ -63,11 +63,11 @@ function App() {
       .editProfile(data)
       .then((newData) => {
         setCurrentUser(newData);
+        closeAllPopups();
       })
       .catch(console.log)
       .finally(() => {
         setButtonText('Save');
-        closeAllPopups();
       });
   }
 
@@ -77,11 +77,11 @@ function App() {
       .updateProfilePic(avatar)
       .then((newData) => {
         setCurrentUser(newData);
+        closeAllPopups();
       })
       .catch(console.log)
       .finally(() => {
         setButtonText('Save');
-        closeAllPopups();
       });
   }
 
@@ -120,11 +120,11 @@ function App() {
       .addCard(card)
       .then((newCard) => {
         setCards([newCard, ...cards]);
+        closeAllPopups();
       })
       .catch(console.log)
       .finally(() => {
         setButtonText('Create');
-        closeAllPopups();
       });
   }
 
@@ -160,6 +160,7 @@ function App() {
         localStorage.setItem('jwt', user.token);
         setIsLoggedIn(true);
         setCurrentUser({ ...currentUser, email });
+        setUserEmail(email);
         navigate('/');
       })
       .catch((e) => {
@@ -194,7 +195,7 @@ function App() {
   useEffect(() => {
     const jwt = localStorage.getItem('jwt');
     if (jwt) {
-      validate(jwt)
+      checkToken(jwt)
         .then((data) => {
           setUserEmail(data.data['email']);
           setIsLoggedIn(true);

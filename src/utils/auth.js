@@ -1,6 +1,6 @@
 export const BASE_URL = 'https://register.nomoreparties.co';
 
-const responseData = (res) => {
+const checkResponse = (res) => {
   if (!res.ok) {
     return Promise.reject(`Error: ${res.status}`);
   }
@@ -15,7 +15,7 @@ export const register = (user) => {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({ password: user.password, email: user.email }),
-  }).then(responseData);
+  }).then(checkResponse);
 };
 
 // /signin for user authorization
@@ -26,16 +26,16 @@ export const authorize = (user) => {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({ password: user.password, email: user.email }),
-  }).then(responseData);
+  }).then(checkResponse);
 };
 
 // checking token validity
-export const validate = (jwt) => {
+export const checkToken = (jwt) => {
   return fetch(`${BASE_URL}/users/me`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${jwt}`,
     },
-  }).then(responseData);
+  }).then(checkResponse);
 };
